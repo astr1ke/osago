@@ -14,3 +14,4 @@
 </script>
 <script src="{{asset('js')}}/website.min.js" type="text/javascript" data-cfasync="false"></script>
 <script src="{{asset('js')}}/jquery.js"></script>
+<script src="{{asset('js')}}/app.js"></script>

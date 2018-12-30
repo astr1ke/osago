@@ -15,6 +15,6 @@
 Route::get('/','mainController@welcome');
 Route::get('/done','uploadController@done');
 Route::get('/upload','uploadController@upload');
-Route::post('/upload1','uploadController@uploadPost');
+Route::post('/upload','uploadController@uploadPost');
 
 

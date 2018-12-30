@@ -1,0 +1,24 @@
+#docker container hitalos/laravel
+web:
+    image: hitalos/laravel:latest
+    ports:
+        - 80:80
+    volumes:
+        - C:\oserver\OSPanel\domains\vagan:/var/www
+    # If you don't want to use default 'artisan serve' command, edit and uncomment the line below.
+    # command: php -S 0.0.0.0:80 -t public public/index.php
+    links:
+        - db
+    environment:
+        DB_HOST: db
+        DB_DATABASE: osago
+        DB_USERNAME: astri
+        DB_PASSWORD: 211112
+        DB_CONNECTION: mysql
+db:
+    image: mysql
+    environment:
+        MYSQL_DATABASE: osago
+        MYSQL_USER: astri
+        MYSQL_PASSWORD: 211112
+        MYSQL_ROOT_PASSWORD: 211112

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\sendScan;
+use Faker\Provider\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Mail;
@@ -17,13 +18,17 @@ class uploadController extends Controller
     }
     public function uploadPost(Request $request){
         $user = rand(100,999);
-        dd($request);
 
-        Storage::disk('local')->putFile('скрины/'.$user, $request->file('upload1'));
-        Storage::disk('local')->putFile('скрины/'.$user, $request->file('upload2'));
 
-        Storage::disk('local')->putFile('скрины/'.$user, $request->file('upload1'));
-        Storage::disk('local')->putFile('скрины/'.$user, $request->file('upload2'));
+        file_put_contents('log.txt', print_r($request->file('form1upload1'), 1), FILE_APPEND);
+
+
+
+        Storage::disk('local')->putFile('скрины/'.$user, $request->file('form1upload1'));
+        Storage::disk('local')->putFile('скрины/'.$user, $request->file('form1upload2'));
+
+        //Storage::disk('local')->putFile('скрины/'.$user, $request->file('upload1'));
+        //Storage::disk('local')->putFile('скрины/'.$user, $request->file('upload2'));
 
         $number = $request->number;
         $oldDir = $user;
@@ -49,6 +54,7 @@ class uploadController extends Controller
         Mail::to('mail.usa.va@gmail.com')->send($attach);
         Storage::disk('local')->deleteDirectory('скрины/'.$number);
 
+        dd($request);
         return redirect('done');
     }
 
