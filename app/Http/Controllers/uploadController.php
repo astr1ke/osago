@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\sendScan;
-use Faker\Provider\File;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -14,25 +12,19 @@ use Intervention\Image\ImageManagerStatic as Image;
 class uploadController extends Controller
 {
     public function upload(){
-        return view('upload.upload',['icon'=>'', 'mass' => ['nastia','dima','vlad']]);
+        return view('upload.upload',['icon'=>'']);
     }
     public function uploadPost(Request $request){
-        $user = rand(100,999);
-
-
-        file_put_contents('log.txt', print_r($request->file('form1upload1'), 1), FILE_APPEND);
-
-
-
-        Storage::disk('local')->putFile('скрины/'.$user, $request->file('form1upload1'));
-        Storage::disk('local')->putFile('скрины/'.$user, $request->file('form1upload2'));
-
-        //Storage::disk('local')->putFile('скрины/'.$user, $request->file('upload1'));
-        //Storage::disk('local')->putFile('скрины/'.$user, $request->file('upload2'));
-
+        $dir = rand(100,999);
         $number = $request->number;
-        $oldDir = $user;
-        $files = Storage::disk('local')->files('скрины/'.$oldDir);
+        $files = $request->file('uploadFiles');
+
+        foreach ($files as $file) {
+            Storage::disk('local')->putFile('скрины/'.$dir, $file);
+        }
+
+
+        $files = Storage::disk('local')->files('скрины/'.$dir);
         Storage::disk('local')->makeDirectory('скрины/'.$number);
 
         foreach ($files as $file){
@@ -43,7 +35,7 @@ class uploadController extends Controller
             $filePath = strrchr($file,'/');
             Storage::disk('local')->put('скрины/'.$number.$filePath, $img->encode($ext, 80));
         }
-        Storage::disk('local')->deleteDirectory('скрины/'.$oldDir);
+        //Storage::disk('local')->deleteDirectory('скрины/'.$oldDir);
 
 
         $sendDir = Storage::disk('local')->files('скрины/'.$number);
@@ -52,7 +44,7 @@ class uploadController extends Controller
         $attach->number = $number;
         $attach->comment = $request->comment;
         Mail::to('mail.usa.va@gmail.com')->send($attach);
-        Storage::disk('local')->deleteDirectory('скрины/'.$number);
+       // Storage::disk('local')->deleteDirectory('скрины/'.$number);
 
         dd($request);
         return redirect('done');

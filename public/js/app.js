@@ -37444,11 +37444,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("input", {
-      ref: "form1Input1",
       staticClass: "formInput",
       attrs: {
         type: "file",
-        name: "form1upload1",
+        name: "uploadFiles[]",
         id: "form1UploadHiddenLeft",
         onchange:
           "document.getElementById('Form1UploadVisibleDoneLeft').style.display = 'initial'; document.getElementById('Form1UploadVisibleIconLeft').style.display = 'none';"
@@ -37464,11 +37463,10 @@ var render = function() {
     }),
     _vm._v(" "),
     _c("input", {
-      ref: "form1Input2",
       staticClass: "formInput",
       attrs: {
         type: "file",
-        name: "form1upload2",
+        name: "uploadFiles[]",
         id: "form1UploadHiddenRight",
         onchange:
           "document.getElementById('Form1UploadVisibleDoneRight').style.display = 'initial'; document.getElementById('Form1UploadVisibleIconRight').style.display = 'none';"
@@ -37553,7 +37551,7 @@ var render = function() {
       staticClass: "formInput",
       attrs: {
         type: "file",
-        name: "form2upload1",
+        name: "uploadFiles[]",
         id: "form2UploadHiddenLeft",
         onchange:
           "document.getElementById('Form2UploadVisibleDoneLeft').style.display = 'initial'; document.getElementById('Form2UploadVisibleIconLeft').style.display = 'none';"
@@ -37572,7 +37570,7 @@ var render = function() {
       staticClass: "formInput",
       attrs: {
         type: "file",
-        name: "form2upload2",
+        name: "uploadFiles[]",
         id: "form2UploadHiddenRight",
         onchange:
           "document.getElementById('Form2UploadVisibleDoneRight').style.display = 'initial'; document.getElementById('Form2UploadVisibleIconRight').style.display = 'none';"
@@ -37657,7 +37655,7 @@ var render = function() {
       staticClass: "formInput",
       attrs: {
         type: "file",
-        name: "form3upload1",
+        name: "uploadFiles[]",
         id: "form3UploadHiddenLeft",
         onchange:
           "document.getElementById('Form3UploadVisibleDoneLeft').style.display = 'initial'; document.getElementById('Form3UploadVisibleIconLeft').style.display = 'none';"
@@ -37676,7 +37674,7 @@ var render = function() {
       staticClass: "formInput",
       attrs: {
         type: "file",
-        name: "form3upload2",
+        name: "uploadFiles[]",
         id: "form3UploadHiddenRight",
         onchange:
           "document.getElementById('Form3UploadVisibleDoneRight').style.display = 'initial'; document.getElementById('Form3UploadVisibleIconRight').style.display = 'none';"
@@ -37878,7 +37876,7 @@ var render = function() {
       staticClass: "formInput",
       attrs: {
         type: "file",
-        name: "form5upload1",
+        name: "uploadFiles[]",
         id: "form5UploadHiddenLeft",
         onchange:
           "document.getElementById('Form5UploadVisibleDoneLeft').style.display = 'initial'; document.getElementById('Form5UploadVisibleIconLeft').style.display = 'none';"
@@ -37897,7 +37895,7 @@ var render = function() {
       staticClass: "formInput",
       attrs: {
         type: "file",
-        name: "form5upload2",
+        name: "uploadFiles[]",
         id: "form5UploadHiddenRight",
         onchange:
           "document.getElementById('Form5UploadVisibleDoneRight').style.display = 'initial'; document.getElementById('Form5UploadVisibleIconRight').style.display = 'none';"
@@ -37916,7 +37914,7 @@ var render = function() {
       staticClass: "formInput",
       attrs: {
         type: "file",
-        name: "form5upload3",
+        name: "uploadFiles[]",
         id: "form5UploadHiddenCenter",
         onchange:
           "document.getElementById('Form5UploadVisibleDoneCenter').style.display = 'initial'; document.getElementById('Form5UploadVisibleIconCenter').style.display = 'none';"
@@ -49379,7 +49377,7 @@ var app = new Vue({
     pageSetting: {
       page1: {
         mainTitle: 'Загрузите фото паспорта собственника:',
-        mainImage: 'http://vagan.loc/images/passport.jpg',
+        mainImage: '/images/passport.jpg',
         mainButton: 'initial',
         form1display: 'initial',
         form2display: 'none',
@@ -49389,7 +49387,7 @@ var app = new Vue({
       },
       page2: {
         mainTitle: 'Загрузите Свидетельство о регистрации ТС::',
-        mainImage: 'http://vagan.loc/images/sts.jpg',
+        mainImage: '/images/sts.jpg',
         mainButton: 'initial',
         form1display: 'none',
         form2display: 'initial',
@@ -49399,7 +49397,7 @@ var app = new Vue({
       },
       page3: {
         mainTitle: 'Загрузите Водительские удостоверения:',
-        mainImage: 'http://vagan.loc/images/prava.jpg',
+        mainImage: '/images/prava.jpg',
         mainButton: 'none',
         form1display: 'none',
         form2display: 'none',
@@ -49409,7 +49407,7 @@ var app = new Vue({
       },
       page4: {
         mainTitle: 'Все документы загружены!!!',
-        mainImage: 'http://vagan.loc/images/osago.jpg',
+        mainImage: '/images/osago.jpg',
         mainButton: 'none',
         form1display: 'none',
         form2display: 'none',
@@ -49419,7 +49417,7 @@ var app = new Vue({
       },
       page5: {
         mainTitle: 'Загрузите Паспорт ТС (ПТС) и договор купли-продажи:',
-        mainImage: 'http://vagan.loc/images/pts.jpg',
+        mainImage: '/images/pts.jpg',
         mainButton: 'initial',
         form1display: 'none',
         form2display: 'none',
@@ -49459,13 +49457,12 @@ var app = new Vue({
     submitMethod: function submitMethod() {
       alert('Отправляю форму'); // создать объект для формы
 
-      var formData = new FormData(document.forms.inputFormName);
-      alert(formData); // добавить к пересылке ещё пару ключ - значение
+      var formData = new FormData(document.forms.inputFormName); // добавить к пересылке ещё пару ключ - значение
 
       formData.append("ttt", "rrr"); // отослать
 
       var xhr = new XMLHttpRequest();
-      xhr.open("POST", "http://vagan.loc/upload");
+      xhr.open("POST", "http://vagan.loc:8080/upload");
       xhr.send(formData); // axios.post('http://vagan.loc/upload', {
       //     upload: this.inputs,
       //     phone: this.phone,
@@ -49999,15 +49996,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************************************!*\
   !*** ./resources/assets/js/components/upload/app-title.vue ***!
   \*************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_title_vue_vue_type_template_id_ceed5f96___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app-title.vue?vue&type=template&id=ceed5f96& */ "./resources/assets/js/components/upload/app-title.vue?vue&type=template&id=ceed5f96&");
 /* harmony import */ var _app_title_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app-title.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/upload/app-title.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _app_title_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _app_title_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -50037,7 +50033,7 @@ component.options.__file = "resources/assets/js/components/upload/app-title.vue"
 /*!**************************************************************************************!*\
   !*** ./resources/assets/js/components/upload/app-title.vue?vue&type=script&lang=js& ***!
   \**************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

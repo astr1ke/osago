@@ -63,7 +63,7 @@ const app = new Vue({
         pageSetting: {
             page1: {
                 mainTitle: 'Загрузите фото паспорта собственника:',
-                mainImage: 'http://vagan.loc/images/passport.jpg',
+                mainImage: '/images/passport.jpg',
                 mainButton: 'initial',
                 form1display: 'initial',
                 form2display: 'none',
@@ -73,7 +73,7 @@ const app = new Vue({
             },
             page2: {
                 mainTitle: 'Загрузите Свидетельство о регистрации ТС::',
-                mainImage: 'http://vagan.loc/images/sts.jpg',
+                mainImage: '/images/sts.jpg',
                 mainButton: 'initial',
                 form1display: 'none',
                 form2display: 'initial',
@@ -83,7 +83,7 @@ const app = new Vue({
             },
             page3: {
                 mainTitle: 'Загрузите Водительские удостоверения:',
-                mainImage: 'http://vagan.loc/images/prava.jpg',
+                mainImage: '/images/prava.jpg',
                 mainButton: 'none',
                 form1display: 'none',
                 form2display: 'none',
@@ -93,7 +93,7 @@ const app = new Vue({
             },
             page4: {
                 mainTitle: 'Все документы загружены!!!',
-                mainImage: 'http://vagan.loc/images/osago.jpg',
+                mainImage: '/images/osago.jpg',
                 mainButton: 'none',
                 form1display: 'none',
                 form2display: 'none',
@@ -103,7 +103,7 @@ const app = new Vue({
             },
             page5: {
                 mainTitle: 'Загрузите Паспорт ТС (ПТС) и договор купли-продажи:',
-                mainImage: 'http://vagan.loc/images/pts.jpg',
+                mainImage: '/images/pts.jpg',
                 mainButton: 'initial',
                 form1display: 'none',
                 form2display: 'none',
@@ -148,13 +148,12 @@ const app = new Vue({
 
             // создать объект для формы
             var formData = new FormData(document.forms.inputFormName);
-            alert(formData);
             // добавить к пересылке ещё пару ключ - значение
             formData.append("ttt", "rrr");
 
             // отослать
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "http://vagan.loc/upload");
+            xhr.open("POST", "http://vagan.loc:8080/upload");
             xhr.send(formData);
 
 
