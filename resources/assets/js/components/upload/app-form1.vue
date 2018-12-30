@@ -18,3 +18,37 @@
         props: ['icon', 'done']
     }
 </script>
+
+
+<style>
+    .formButtonLeft {
+        max-width: 258px !important;
+        margin-right: 10px !important;
+    }
+    .formButtonRight {
+        max-width: 258px !important;
+        margin-right: 10px !important;
+    }
+    .formIconLeft {
+        display: initial;
+        height: 30px;
+        width: 30px;
+        margin-right: 17px
+    }
+    .formDoneLeft {
+        display: none;
+        height: 30px;
+        width: 30px;
+        margin-right: 17px
+    }
+    .formIconRight {
+        display: initial;
+        height: 30px;
+        width: 30px
+    }
+    .formDoneRight {
+        display: none;
+        height: 30px;
+        width: 30px
+    }
+</style>

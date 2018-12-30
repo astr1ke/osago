@@ -5,10 +5,10 @@
 
         <br>
         <input type="text" name="form4more" id="more" hidden>
-        <label>Для вновь купленных автомобилей необходимы дополнительные документы:</label>
+        <h5>Для вновь купленных автомобилей необходимы дополнительные документы!</h5>
 
         <button class="addInfo" @click="this.$parent.nextPage" type="submit" onclick="document.getElementById('more').value = '1'">Доп. документы</button>
-        <button @click="$emit('submit-button')" class="doneButton" type="submit">Сохранить и вернуться</button>
+        <button @click="$emit('submit-button')" class="doneButton" type="submit">Отправить заявку!</button>
     </div>
 </template>
 

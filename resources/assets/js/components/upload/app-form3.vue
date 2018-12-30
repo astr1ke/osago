@@ -1,25 +1,51 @@
 <template>
     <div>
-    <input @change="$emit('change1', true)" @input="$emit('input1', $event.target.value)" class="formInput" type="file" name="uploadFiles[]" id="form3UploadHiddenLeft" onchange="document.getElementById('Form3UploadVisibleDoneLeft').style.display = 'initial'; document.getElementById('Form3UploadVisibleIconLeft').style.display = 'none';" />
-    <input @change="$emit('change2', true)" @input="$emit('input2', $event.target.value)" class="formInput" type="file" name="uploadFiles[]" id="form3UploadHiddenRight" onchange="document.getElementById('Form3UploadVisibleDoneRight').style.display = 'initial'; document.getElementById('Form3UploadVisibleIconRight').style.display = 'none';" />
+        <h5 v-if="currentButtonGroupCount===0">Если Вам нужна ограниченая страховка, добавьте водителей!</h5>
+        <appAddDriverButton :style="visibleButtonsGroup.visibleButtons1"></appAddDriverButton>
+        <appAddDriverButton :style="visibleButtonsGroup.visibleButtons2"></appAddDriverButton>
+        <appAddDriverButton :style="visibleButtonsGroup.visibleButtons3"></appAddDriverButton>
+        <appAddDriverButton :style="visibleButtonsGroup.visibleButtons4"></appAddDriverButton>
 
-    <button class="formButtonLeft" onclick="document.getElementById('form3UploadHiddenLeft').click()">Главная страница</button>
-    <img class="formIconLeft" :src="icon" id="Form3UploadVisibleIconLeft">
-    <img class="formDoneLeft" :src="done" id="Form3UploadVisibleDoneLeft">
-
-    <button class="formButtonRight" onclick="document.getElementById('form3UploadHiddenRight').click()">Обратная сторона</button>
-    <img class="formIconRight" :src="icon" id="Form3UploadVisibleIconRight">
-    <img class="formDoneRight" :src="done" id="Form3UploadVisibleDoneRight">
-
-    <input type="text" name="form3more" id="more" hidden>' +
-    <button class="addDriver" type="submit" onclick="document.getElementById('form3more').value = '1'">Добавить еще водителя</button>
-    <button class="doneButton" @click="this.$parent.nextPage" type="submit">Закончить отправку</button>
+        <button @click="addButtonGroup" :style="visibleButtonAddDriver" class="addDriverButton">Добавить водителя</button>
+        <button class="doneButton" @click="this.$parent.nextPage">К последнему шагу</button>
     </div>
 </template>
 
 <script>
+    import appAddDriverButton from './app-add-driver-button.vue'
     export default {
-        props: ['icon', 'done']
+        data () {
+            return {
+                currentButtonGroupCount: 0,
+                visibleButtonAddDriver: {display: 'initial'},
+                visibleButtonsGroup: {
+                    visibleButtons1: {display: 'none'},
+                    visibleButtons2: {display: 'none'},
+                    visibleButtons3: {display: 'none'},
+                    visibleButtons4: {display: 'none'}
+                }
+            }
+        },
+        methods: {
+            addButtonGroup: function () {
+                this.currentButtonGroupCount++;
+                if (this.currentButtonGroupCount > 3) {
+                    this.visibleButtonAddDriver = {display: 'none'}
+                }
+                this.visibleButtonsGroup['visibleButtons' + this.currentButtonGroupCount] = {display: 'initial'}
+            }
+        },
+        components: {
+            appAddDriverButton
+        }
     }
 </script>
 
+
+<style scoped>
+    .addDriverButton {
+        max-width: 613px !important;
+        background: #5b7eb8 !important;
+        margin-top: 10px !important
+    }
+</style>

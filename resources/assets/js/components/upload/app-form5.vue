@@ -15,6 +15,8 @@
     <button class="addDKP" onclick="document.getElementById('form5UploadHiddenCenter').click()">Договор КП</button>
     <img class="formIconCenter" :src="icon" id="Form5UploadVisibleIconCenter">
     <img class="formDoneCenter" :src="done" id="Form5UploadVisibleDoneCenter">
+
+    <button @click="$emit('to4step')" class="doneButton" type="submit">Сохранить и вернуться</button>
     </div>
 </template>
 

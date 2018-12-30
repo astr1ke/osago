@@ -9,6 +9,8 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import axios from 'axios';
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -17,6 +19,7 @@ window.Vue = require('vue');
 
 Vue.component('app-title', require('./components/upload/app-title.vue').default);
 Vue.component('app-main-image', require('./components/upload/app-main-image.vue').default);
+Vue.component('app-add-driver-button', require('./components/upload/app-add-driver-button.vue').default);
 Vue.component('app-form1', require('./components/upload/app-form1.vue').default);
 Vue.component('app-form2', require('./components/upload/app-form2.vue').default);
 Vue.component('app-form3', require('./components/upload/app-form3.vue').default);
@@ -27,29 +30,12 @@ Vue.component('app-form5', require('./components/upload/app-form5.vue').default)
 const app = new Vue({
     el: '#app',
     data: {
-        phone: '',
-        comment: '',
-        inputs: {
-            form1Input1: '',
-            form1Input2: '',
-            form2Input1: '',
-            form2Input2: '',
-            form3Input1: '',
-            form3Input2: '',
-            form5Input1: '',
-            form5Input2: '',
-            form5Input3: ''
-        },
         checker: {
             form1: {
                 check1: false,
                 check2: false
             },
             form2: {
-                check1: false,
-                check2: false
-            },
-            form3: {
                 check1: false,
                 check2: false
             },
@@ -104,7 +90,7 @@ const app = new Vue({
             page5: {
                 mainTitle: 'Загрузите Паспорт ТС (ПТС) и договор купли-продажи:',
                 mainImage: '/images/pts.jpg',
-                mainButton: 'initial',
+                mainButton: 'none',
                 form1display: 'none',
                 form2display: 'none',
                 form3display: 'none',
@@ -145,35 +131,35 @@ const app = new Vue({
         submitMethod: function () {
             alert('Отправляю форму');
 
-
-            // создать объект для формы
-            var formData = new FormData(document.forms.inputFormName);
-            // добавить к пересылке ещё пару ключ - значение
-            formData.append("ttt", "rrr");
-
-            // отослать
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "http://vagan.loc:8080/upload");
-            xhr.send(formData);
+            // // создать объект для формы
+            // var formData = new FormData(document.forms.inputFormName);
+            // // отослать
+            // var xhr = new XMLHttpRequest();
+            // xhr.open("POST", "http://vagan.loc:8080/upload");
+            // xhr.send(formData);
 
 
-            // axios.post('http://vagan.loc/upload', {
-            //     upload: this.inputs,
-            //     phone: this.phone,
-            //     comment: this.comment
-            // })
-            //     .then(function (response) {
-            //         console.log(response);
-            //     })
-            //     .catch(function (error) {
-            //         console.log(error);
-            //     });
+            var data = new FormData(document.forms.inputFormName);
+            axios.post('http://vagan.loc:8080/upload', data, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+                .then(function (response) {
+                    console.log(response);
+                    if (response.status === 200) {
+                        alert('Отправлено отлично!!!')
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
 
         },
+        toFourStep: function() {
+            this.currentSetting = 4
+        },
         nextPage: function () {
-            this.currentSetting++;
-            return false;
-
             var currentForm = 'form' + this.currentSetting;
             var m = this.checker[currentForm];
             var result = true;
